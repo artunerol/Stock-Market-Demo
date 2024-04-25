@@ -32,6 +32,7 @@
 		83F70CC92BDAB25A000229D4 /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F70CC82BDAB25A000229D4 /* UIView+Nib.swift */; };
 		83F70CCB2BDAB387000229D4 /* StockHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F70CCA2BDAB387000229D4 /* StockHeaderView.xib */; };
 		83F70CCD2BDABD57000229D4 /* StockMarketCellUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F70CCC2BDABD57000229D4 /* StockMarketCellUIModel.swift */; };
+		83F70CD02BDAF2E8000229D4 /* QueryItemConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F70CCF2BDAF2E8000229D4 /* QueryItemConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		83F70CC82BDAB25A000229D4 /* UIView+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		83F70CCA2BDAB387000229D4 /* StockHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockHeaderView.xib; sourceTree = "<group>"; };
 		83F70CCC2BDABD57000229D4 /* StockMarketCellUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMarketCellUIModel.swift; sourceTree = "<group>"; };
+		83F70CCF2BDAF2E8000229D4 /* QueryItemConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				83A53F0C2BDA64B200AFD6A2 /* NetworkSession.swift */,
 				83A53F0E2BDA64D000AFD6A2 /* EndpointEnum.swift */,
 				83A53F122BDA676300AFD6A2 /* NetworkConfiguration.swift */,
+				83F70CCF2BDAF2E8000229D4 /* QueryItemConfigurator.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				83A53F0B2BDA5EE600AFD6A2 /* TableviewCell+Nibname.swift in Sources */,
 				83A53F062BDA5D6400AFD6A2 /* StockMarketTableViewCell.swift in Sources */,
 				83F70CC52BDAABB7000229D4 /* StockDetailResponse.swift in Sources */,
+				83F70CD02BDAF2E8000229D4 /* QueryItemConfigurator.swift in Sources */,
 				83A53F112BDA660700AFD6A2 /* String+URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

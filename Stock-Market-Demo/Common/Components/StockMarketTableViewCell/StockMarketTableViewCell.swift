@@ -37,7 +37,7 @@ class StockMarketTableViewCell: UITableViewCell {
         
     }
     
-    func configure(with model: MypageDefault?) {
+    func configure(with model: StockInfo?) {
         stockCodLabel.text = model?.cod
     }
 }

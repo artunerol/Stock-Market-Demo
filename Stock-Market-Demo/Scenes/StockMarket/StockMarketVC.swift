@@ -57,13 +57,13 @@ extension StockMarketVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.stockListResponse.value?.mypageDefaults.count ?? 0
+        viewModel.stockListResponse.value?.stockInfo.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StockMarketTableViewCell.identifier,
                                                        for: indexPath) as? StockMarketTableViewCell else { return UITableViewCell() }
-        cell.configure(with: viewModel.stockListResponse.value?.mypageDefaults[indexPath.row])
+        cell.configure(with: viewModel.stockListResponse.value?.stockInfo[indexPath.row])
         return cell
     }
     

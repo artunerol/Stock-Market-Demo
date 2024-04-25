@@ -8,17 +8,22 @@
 import Foundation
 
 struct StockListResponse: Codable {
-    let mypageDefaults: [MypageDefault]
-    let mypage: [Mypage]
+    let stockInfo: [StockInfo]
+    let stockDetailInfo: [StockDetailInfo]
+    
+    enum CodingKeys: String, CodingKey {
+        case stockInfo = "mypageDefaults"
+        case stockDetailInfo = "mypage"
+    }
 }
 
 // MARK: - Mypage
-struct Mypage: Codable {
+struct StockDetailInfo: Codable {
     let name, key: String
 }
 
 // MARK: - MypageDefault
-struct MypageDefault: Codable {
+struct StockInfo: Codable {
     let cod, gro, tke, def: String
 }
 

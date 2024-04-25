@@ -12,16 +12,10 @@ class StockMarketVM {
     private let group = DispatchGroup()
     let networkSession = NetworkSession()
     let stockListResponse: BehaviorRelay<StockListResponse?> = .init(value: nil)
-    var queryItems: [URLQueryItem] {
-        get {
-            var stockQueryValue: String = ""
-            stockListResponse.value?.mypageDefaults.forEach({ stock in
-                stockQueryValue += stock.tke + "~"
-            })
-            return [URLQueryItem(name: "fields", value: "pdd,sel"),
-                    URLQueryItem(name: "stcs", value: stockQueryValue)]
-        }
-    }
+    lazy var queryItemConfigurator: QueryItemConfigurator = {
+        let configurator = QueryItemConfigurator(stockInfo: stockListResponse.value?.stockInfo)
+        return configurator
+    }()
     
     init() {
         fetchStockList()
@@ -52,7 +46,7 @@ class StockMarketVM {
         networkSession
             .request(model: StockDetailResponse.self,
                      endpoint: .stockDetail,
-                     queryParams: queryItems) { result in
+                     queryParams: queryItemConfigurator.queryItems) { result in
                 switch result {
                 case .success(let response):
                     print(response)
