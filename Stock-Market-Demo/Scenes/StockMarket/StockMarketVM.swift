@@ -8,5 +8,9 @@
 import Foundation
 
 class StockMarketVM {
+    let networkSession = NetworkSession()
     
+    func fetch() {
+        
+    }
 }

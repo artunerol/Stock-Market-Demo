@@ -8,6 +8,7 @@
 import UIKit
 
 class StockMarketVC: UIViewController {
+    private let viewModel = StockMarketVM()
 
     @IBOutlet var stockTableView: UITableView! {
         didSet {
@@ -21,7 +22,7 @@ class StockMarketVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 }
 
