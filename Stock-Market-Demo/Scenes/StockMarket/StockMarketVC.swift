@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class StockMarketVC: UIViewController {
+    private let disposeBag = DisposeBag()
     private let viewModel = StockMarketVM()
 
     @IBOutlet var stockTableView: UITableView! {
@@ -17,42 +20,64 @@ class StockMarketVC: UIViewController {
             stockTableView.register(UINib(nibName: StockMarketTableViewCell.getNibName(),
                                           bundle: nil),
                                     forCellReuseIdentifier: StockMarketTableViewCell.identifier)
-            
-            stockTableView.register(UINib(nibName: StockHeaderView.identifier,
-                                          bundle: nil),
-                                    forCellReuseIdentifier: StockHeaderView.identifier)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.fetchStockList()
+        bind()
+    }
+}
+
+// MARK: - Rx Bindings
+extension StockMarketVC {
+    func bind() {
+        viewModel
+            .stockListResponse
+            .skip(1)
+            .observe(on: MainScheduler.instance)
+            .subscribe { [weak self] response in
+                self?.stockTableView.reloadData()
+            }
+            .disposed(by: disposeBag)
     }
 }
 
 // MARK: - TableViewDelegate & DataSource funcs
 
 extension StockMarketVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view: StockHeaderView = .fromNib()
-        return view
+        let headerView = Bundle.main.loadNibNamed("StockHeaderView", owner: self, options: nil)?.first as? StockHeaderView
+        headerView?.delegate = self
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         45
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.stockListResponse.value?.mypageDefaults.count ?? 0
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StockMarketTableViewCell.identifier,
                                                        for: indexPath) as? StockMarketTableViewCell else { return UITableViewCell() }
+        cell.configure(with: viewModel.stockListResponse.value?.mypageDefaults[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         50
+    }
+}
+
+extension StockMarketVC: StockHeaderDelegate {
+    func firstButtonPressed() {
+        print("from vc")
+    }
+    
+    func secondButtonPressed() {
+        print("from vc")
     }
 }

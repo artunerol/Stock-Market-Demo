@@ -10,9 +10,16 @@ import Foundation
 class NetworkSession {
     func request<T: Codable>(model: T.Type,
                              endpoint: EndpointEnum,
+                             queryParams: [URLQueryItem]? = nil,
                              completion: @escaping (Result<T, CustomError>) -> Void) {
         let urlString = NetworkConfiguration.baseAPI + endpoint.getURLString()
-        let url = urlString.asURL()
+        var urlComponent = URLComponents(string: urlString)
+        
+        if let queryParams = queryParams {
+            urlComponent?.queryItems = queryParams
+        }
+        
+        guard let url = urlComponent?.url else { return }
         let request = URLRequest(url: url)
         
         URLSession.shared.dataTask(with: request) {data, _, error in

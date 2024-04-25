@@ -8,10 +8,10 @@
 import Foundation
 
 struct StockDetailResponse: Codable {
-    let l: [L]
+    let l: [StockDetail]
 }
 
 // MARK: - L
-struct L: Codable {
-    let tke, clo, pdd, hig, las: String
+struct StockDetail: Codable {
+    let tke, clo, pdd, las: String
 }

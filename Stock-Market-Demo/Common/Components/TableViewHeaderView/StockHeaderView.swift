@@ -7,15 +7,26 @@
 
 import UIKit
 
+protocol StockHeaderDelegate: AnyObject {
+    func firstButtonPressed()
+    func secondButtonPressed()
+}
+
 class StockHeaderView: UIView {
     static let identifier = "StockHeaderView"
+    
+    weak var delegate: StockHeaderDelegate?
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    @IBOutlet var symbolLabel: UILabel!
+    @IBOutlet var firstButtonOutlet: UIButton!
+    @IBOutlet var secondButtonOutlet: UIButton!
+    
+    @IBAction func firstButtonPressed(_ sender: Any) {
+        delegate?.firstButtonPressed()
+        print("firstButtonPressed")
     }
-    */
-
+    @IBAction func secondButtonPressed(_ sender: Any) {
+        delegate?.secondButtonPressed()
+        print("secondButtonPressed")
+    }
 }

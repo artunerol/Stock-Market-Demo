@@ -9,10 +9,22 @@ import UIKit
 
 class StockMarketTableViewCell: UITableViewCell {
     static let identifier = "StockMarketTableViewCell"
-
-    @IBOutlet var arrowImageView: UIImageView!
-    @IBOutlet var stockCodLabel: UILabel!
-    @IBOutlet var updateTimeLabel: UILabel!
+    
+    @IBOutlet var arrowImageView: UIImageView! {
+        didSet {
+            
+        }
+    }
+    @IBOutlet var stockCodLabel: UILabel! {
+        didSet {
+            stockCodLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        }
+    }
+    @IBOutlet var updateTimeLabel: UILabel! {
+        didSet {
+            updateTimeLabel.font = .systemFont(ofSize: 10, weight: .regular)
+        }
+    }
     @IBOutlet var firstDetailLabel: UILabel!
     @IBOutlet var secondDetailLabel: UILabel!
     
@@ -20,11 +32,12 @@ class StockMarketTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func configure(with model: StockMarketCellUIModel?) {
+        
     }
     
+    func configure(with model: MypageDefault?) {
+        stockCodLabel.text = model?.cod
+    }
 }
