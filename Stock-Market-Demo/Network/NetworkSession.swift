@@ -13,7 +13,7 @@ class NetworkSession {
                              completion: @escaping (Result<T, CustomError>) -> Void) {
         let urlString = NetworkConfiguration.baseAPI + endpoint.getURLString()
         let url = urlString.asURL()
-        var request = URLRequest(url: url)
+        let request = URLRequest(url: url)
         
         URLSession.shared.dataTask(with: request) {data, _, error in
             guard let data = data else { return }

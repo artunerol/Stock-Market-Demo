@@ -10,6 +10,12 @@ import UIKit
 class StockMarketTableViewCell: UITableViewCell {
     static let identifier = "StockMarketTableViewCell"
 
+    @IBOutlet var arrowImageView: UIImageView!
+    @IBOutlet var stockCodLabel: UILabel!
+    @IBOutlet var updateTimeLabel: UILabel!
+    @IBOutlet var firstDetailLabel: UILabel!
+    @IBOutlet var secondDetailLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
