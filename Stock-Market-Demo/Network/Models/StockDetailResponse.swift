@@ -8,10 +8,23 @@
 import Foundation
 
 struct StockDetailResponse: Codable {
-    let l: [StockDetail]
+    let stockDetailArray: [StockDetail]
+    
+    enum CodingKeys: String, CodingKey {
+        case stockDetailArray = "l"
+    }
 }
 
 // MARK: - L
 struct StockDetail: Codable {
-    let tke, clo, pdd, las: String
+    let key, updateTime, lastValue: String
+    let diff, diffPercengate: String?
+    
+    enum CodingKeys:String, CodingKey {
+        case key = "tke"
+        case updateTime = "clo"
+        case diffPercengate = "pdd"
+        case lastValue = "las"
+        case diff = "ddi"
+    }
 }

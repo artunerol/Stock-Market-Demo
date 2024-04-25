@@ -33,10 +33,10 @@ class StockMarketVC: UIViewController {
 extension StockMarketVC {
     func bind() {
         viewModel
-            .stockListResponse
+            .stockListUIModel
             .skip(1)
             .observe(on: MainScheduler.instance)
-            .subscribe { [weak self] response in
+            .subscribe { [weak self] _ in
                 self?.stockTableView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -57,13 +57,13 @@ extension StockMarketVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.stockListResponse.value?.stockInfo.count ?? 0
+        viewModel.stockListUIModel.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StockMarketTableViewCell.identifier,
                                                        for: indexPath) as? StockMarketTableViewCell else { return UITableViewCell() }
-        cell.configure(with: viewModel.stockListResponse.value?.stockInfo[indexPath.row])
+        cell.configure(with: viewModel.stockListUIModel.value[indexPath.row])
         return cell
     }
     
@@ -71,6 +71,8 @@ extension StockMarketVC: UITableViewDelegate, UITableViewDataSource {
         50
     }
 }
+
+// MARK: - StockHeaderDelegate
 
 extension StockMarketVC: StockHeaderDelegate {
     func firstButtonPressed() {

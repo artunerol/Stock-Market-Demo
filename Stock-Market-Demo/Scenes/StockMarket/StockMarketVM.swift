@@ -6,18 +6,24 @@
 //
 
 import Foundation
-import RxRelay
+import RxSwift
+import RxCocoa
 
 class StockMarketVM {
     private let group = DispatchGroup()
-    let networkSession = NetworkSession()
-    let stockListResponse: BehaviorRelay<StockListResponse?> = .init(value: nil)
+    private let disposeBag = DisposeBag()
+    private let networkSession = NetworkSession()
     lazy var queryItemConfigurator: QueryItemConfigurator = {
         let configurator = QueryItemConfigurator(stockInfo: stockListResponse.value?.stockInfo)
         return configurator
     }()
     
+    private let stockInfoArray: BehaviorRelay<[StockInfoModel]> = .init(value: [])
+    let stockListResponse: BehaviorRelay<StockListResponse?> = .init(value: nil)
+    let stockListUIModel: BehaviorRelay<[StockMarketUIModel]> = .init(value: [])
+    
     init() {
+        bind()
         fetchStockList()
         
         group.notify(queue: .main) {
@@ -46,13 +52,55 @@ class StockMarketVM {
         networkSession
             .request(model: StockDetailResponse.self,
                      endpoint: .stockDetail,
-                     queryParams: queryItemConfigurator.queryItems) { result in
+                     queryParams: queryItemConfigurator.queryItems) { [weak self] result in
                 switch result {
                 case .success(let response):
-                    print(response)
+                    self?.createStockUIModel(with: response)
                 case .failure(let error):
                     print(error)
                 }
             }
+    }
+}
+
+// MARK: - Helpers
+extension StockMarketVM {
+    private func createStockUIModel(with detailResponse: StockDetailResponse) {
+        let stockInfoArray = self.stockInfoArray.value
+        var stockUIModel: [StockMarketUIModel] = []
+        
+        stockInfoArray.forEach { stockInfo in
+            let detailData = detailResponse.stockDetailArray.first(where: {$0.key == stockInfo.key})
+            stockUIModel.append(StockMarketUIModel(stockCode: stockInfo.stockCode,
+                                                   updateTime: detailData?.updateTime ?? "",
+                                                   firstValue: detailData?.lastValue ?? "",
+                                                   secondValue: detailData?.diff ?? "",
+                                                   key: stockInfo.stockCode))
+        }
+        
+        self.stockListUIModel.accept(stockUIModel)
+    }
+}
+
+// MARK: - Bindings
+extension StockMarketVM {
+    func bind() {
+        bindStockListResponse()
+    }
+    
+    private func bindStockListResponse() {
+        stockListResponse
+            .observe(on: MainScheduler.instance)
+            .skip(1)
+            .subscribe(onNext: { [weak self] listInfo in
+                guard let self = self else { return }
+                var stockInfoArray: [StockInfoModel] = []
+                listInfo?.stockInfo.forEach({ stockInfo in
+                    stockInfoArray.append(StockInfoModel(stockCode: stockInfo.cod,
+                                                                  key: stockInfo.tke))
+                })
+                self.stockInfoArray.accept(stockInfoArray)
+            })
+            .disposed(by: disposeBag)
     }
 }

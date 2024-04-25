@@ -24,6 +24,6 @@ struct StockDetailInfo: Codable {
 
 // MARK: - MypageDefault
 struct StockInfo: Codable {
-    let cod, gro, tke, def: String
+    let cod, tke: String
 }
 

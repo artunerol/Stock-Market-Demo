@@ -15,26 +15,36 @@ class StockMarketTableViewCell: UITableViewCell {
             
         }
     }
+    
     @IBOutlet var stockCodLabel: UILabel! {
         didSet {
             stockCodLabel.font = .systemFont(ofSize: 12, weight: .semibold)
         }
     }
+    
     @IBOutlet var updateTimeLabel: UILabel! {
         didSet {
             updateTimeLabel.font = .systemFont(ofSize: 10, weight: .regular)
         }
     }
-    @IBOutlet var firstDetailLabel: UILabel!
-    @IBOutlet var secondDetailLabel: UILabel!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet var firstFilterLabel: UILabel! {
+        didSet {
+            firstFilterLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        }
     }
     
-    func configure(with model: StockMarketCellUIModel?) {
-        
+    @IBOutlet var secondFilterLabel: UILabel! {
+        didSet {
+            secondFilterLabel.font = .systemFont(ofSize: 12, weight: .semibold)
+        }
+    }
+    
+    func configure(with model: StockMarketUIModel?) {
+        stockCodLabel.text = model?.stockCode
+        updateTimeLabel.text = model?.updateTime
+        firstFilterLabel.text = model?.firstValue
+        secondFilterLabel.text = model?.secondValue
     }
     
     func configure(with model: StockInfo?) {

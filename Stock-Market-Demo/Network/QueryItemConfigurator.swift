@@ -7,6 +7,14 @@
 
 import Foundation
 
+enum QueryEnum: String {
+    case tke = "tke"
+    case clo = "clo"
+    case pdd = "pdd"
+    case las = "las"
+    case ddi = "ddi"
+}
+
 class QueryItemConfigurator {
     var queryItems: [URLQueryItem] = []
     
@@ -15,7 +23,11 @@ class QueryItemConfigurator {
         stockInfo?.forEach({ stock in
             stockQueryValue += stock.tke + "~"
         })
-        queryItems = [URLQueryItem(name: "fields", value: "pdd,sel"),
+        queryItems = [URLQueryItem(name: "fields", value: QueryEnum.ddi.rawValue),
                 URLQueryItem(name: "stcs", value: stockQueryValue)]
+    }
+    
+    func changeQueryParam() {
+        
     }
 }

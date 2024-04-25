@@ -45,8 +45,8 @@
                             </stackView>
                         </subviews>
                     </stackView>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="c0R-Mi-GEG">
-                        <rect key="frame" x="217.33333333333334" y="8" width="94.666666666666657" height="28"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="c0R-Mi-GEG">
+                        <rect key="frame" x="205.66666666666666" y="8" width="106.33333333333334" height="28"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTQ-Kf-M1z">
                                 <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="28"/>
@@ -55,12 +55,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZJ-Sf-GMS">
-                                <rect key="frame" x="53.333333333333343" y="0.0" width="41.333333333333343" height="28"/>
+                                <rect key="frame" x="59.333333333333343" y="0.0" width="47" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JTQ-Kf-M1z" secondAttribute="trailing" constant="65" id="7rz-0c-8ck"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,8 +81,8 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="arrowImageView" destination="70M-qc-28x" id="iGQ-Ew-5pn"/>
-                <outlet property="firstDetailLabel" destination="JTQ-Kf-M1z" id="S0Q-ym-JBz"/>
-                <outlet property="secondDetailLabel" destination="wZJ-Sf-GMS" id="uSu-rB-tZ5"/>
+                <outlet property="firstFilterLabel" destination="JTQ-Kf-M1z" id="S0Q-ym-JBz"/>
+                <outlet property="secondFilterLabel" destination="wZJ-Sf-GMS" id="uSu-rB-tZ5"/>
                 <outlet property="stockCodLabel" destination="Ntb-g4-5M6" id="yBx-83-vhw"/>
                 <outlet property="updateTimeLabel" destination="P1h-NV-TpP" id="aMP-aR-9Ad"/>
             </connections>
