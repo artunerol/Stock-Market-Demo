@@ -22,6 +22,10 @@
 		83A53F062BDA5D6400AFD6A2 /* StockMarketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A53F042BDA5D6400AFD6A2 /* StockMarketTableViewCell.swift */; };
 		83A53F072BDA5D6400AFD6A2 /* StockMarketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83A53F052BDA5D6400AFD6A2 /* StockMarketTableViewCell.xib */; };
 		83A53F0B2BDA5EE600AFD6A2 /* TableviewCell+Nibname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A53F0A2BDA5EE600AFD6A2 /* TableviewCell+Nibname.swift */; };
+		83A53F0D2BDA64B200AFD6A2 /* NetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A53F0C2BDA64B200AFD6A2 /* NetworkSession.swift */; };
+		83A53F0F2BDA64D000AFD6A2 /* EndpointEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A53F0E2BDA64D000AFD6A2 /* EndpointEnum.swift */; };
+		83A53F112BDA660700AFD6A2 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A53F102BDA660700AFD6A2 /* String+URL.swift */; };
+		83A53F132BDA676300AFD6A2 /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A53F122BDA676300AFD6A2 /* NetworkConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		83A53F042BDA5D6400AFD6A2 /* StockMarketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMarketTableViewCell.swift; sourceTree = "<group>"; };
 		83A53F052BDA5D6400AFD6A2 /* StockMarketTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockMarketTableViewCell.xib; sourceTree = "<group>"; };
 		83A53F0A2BDA5EE600AFD6A2 /* TableviewCell+Nibname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableviewCell+Nibname.swift"; sourceTree = "<group>"; };
+		83A53F0C2BDA64B200AFD6A2 /* NetworkSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSession.swift; sourceTree = "<group>"; };
+		83A53F0E2BDA64D000AFD6A2 /* EndpointEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointEnum.swift; sourceTree = "<group>"; };
+		83A53F102BDA660700AFD6A2 /* String+URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
+		83A53F122BDA676300AFD6A2 /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +159,10 @@
 		83A53EF02BDA54D900AFD6A2 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				83F70CC12BDAA335000229D4 /* Models */,
+				83A53F0C2BDA64B200AFD6A2 /* NetworkSession.swift */,
+				83A53F0E2BDA64D000AFD6A2 /* EndpointEnum.swift */,
+				83A53F122BDA676300AFD6A2 /* NetworkConfiguration.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -219,8 +231,16 @@
 			isa = PBXGroup;
 			children = (
 				83A53F0A2BDA5EE600AFD6A2 /* TableviewCell+Nibname.swift */,
+				83A53F102BDA660700AFD6A2 /* String+URL.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		83F70CC12BDAA335000229D4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,12 +382,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83A53F0D2BDA64B200AFD6A2 /* NetworkSession.swift in Sources */,
+				83A53F132BDA676300AFD6A2 /* NetworkConfiguration.swift in Sources */,
 				83A53EC02BDA52A000AFD6A2 /* AppDelegate.swift in Sources */,
 				83A53EFB2BDA574C00AFD6A2 /* StockMarketVM.swift in Sources */,
+				83A53F0F2BDA64D000AFD6A2 /* EndpointEnum.swift in Sources */,
 				83A53EC22BDA52A000AFD6A2 /* SceneDelegate.swift in Sources */,
 				83A53EF42BDA554400AFD6A2 /* StockMarketVC.swift in Sources */,
 				83A53F0B2BDA5EE600AFD6A2 /* TableviewCell+Nibname.swift in Sources */,
 				83A53F062BDA5D6400AFD6A2 /* StockMarketTableViewCell.swift in Sources */,
+				83A53F112BDA660700AFD6A2 /* String+URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
