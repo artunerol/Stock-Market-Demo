@@ -9,20 +9,30 @@ import UIKit
 
 class StockMarketVC: UIViewController {
 
+    @IBOutlet var stockTableView: UITableView! {
+        didSet {
+            stockTableView.delegate = self
+            stockTableView.dataSource = self
+            stockTableView.register(UINib(nibName: StockMarketTableViewCell.getNibName(),
+                                          bundle: nil),
+                                    forCellReuseIdentifier: StockMarketTableViewCell.identifier)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+}
 
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension StockMarketVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StockMarketTableViewCell.identifier,
+                                                       for: indexPath) as? StockMarketTableViewCell else { return UITableViewCell() }
+        return cell
+    }
 }
