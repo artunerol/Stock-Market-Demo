@@ -17,17 +17,20 @@ enum QueryEnum: String {
 
 class QueryItemConfigurator {
     var queryItems: [URLQueryItem] = []
+    private var stockCodes: String = ""
     
     init(stockInfo: [StockInfo]?) {
-        var stockQueryValue: String = ""
         stockInfo?.forEach({ stock in
-            stockQueryValue += stock.tke + "~"
+            stockCodes += stock.tke + "~"
         })
-        queryItems = [URLQueryItem(name: "fields", value: QueryEnum.ddi.rawValue),
-                URLQueryItem(name: "stcs", value: stockQueryValue)]
+        addQueryParam(with: [.ddi])
     }
     
-    func changeQueryParam() {
+    func addQueryParam(with query: [QueryEnum]) {
+        var fieldQuery = ""
+        query.forEach {fieldQuery = $0.rawValue + ","}
         
+        queryItems = [URLQueryItem(name: "fields", value: fieldQuery),
+                      URLQueryItem(name: "stcs", value: stockCodes)]
     }
 }
