@@ -30,6 +30,7 @@ class NetworkSession {
             }
             
             if let dataResponse = try? JSONDecoder().decode(model, from: data) {
+                print(dataResponse)
                 completion(.success(dataResponse))
             } else {
                 completion(.failure(.throwError))

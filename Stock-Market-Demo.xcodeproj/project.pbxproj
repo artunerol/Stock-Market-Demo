@@ -33,6 +33,7 @@
 		83F70CCB2BDAB387000229D4 /* StockHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83F70CCA2BDAB387000229D4 /* StockHeaderView.xib */; };
 		83F70CCD2BDABD57000229D4 /* StockMarketUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F70CCC2BDABD57000229D4 /* StockMarketUIModel.swift */; };
 		83F70CD02BDAF2E8000229D4 /* QueryItemConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F70CCF2BDAF2E8000229D4 /* QueryItemConfigurator.swift */; };
+		83F70CD42BDBA230000229D4 /* Userdefaults+Save.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F70CD32BDBA230000229D4 /* Userdefaults+Save.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		83F70CCA2BDAB387000229D4 /* StockHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockHeaderView.xib; sourceTree = "<group>"; };
 		83F70CCC2BDABD57000229D4 /* StockMarketUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMarketUIModel.swift; sourceTree = "<group>"; };
 		83F70CCF2BDAF2E8000229D4 /* QueryItemConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryItemConfigurator.swift; sourceTree = "<group>"; };
+		83F70CD32BDBA230000229D4 /* Userdefaults+Save.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Userdefaults+Save.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +254,7 @@
 				83A53F0A2BDA5EE600AFD6A2 /* TableviewCell+Nibname.swift */,
 				83A53F102BDA660700AFD6A2 /* String+URL.swift */,
 				83F70CC82BDAB25A000229D4 /* UIView+Nib.swift */,
+				83F70CD32BDBA230000229D4 /* Userdefaults+Save.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				83A53EFB2BDA574C00AFD6A2 /* StockMarketVM.swift in Sources */,
 				83A53F0F2BDA64D000AFD6A2 /* EndpointEnum.swift in Sources */,
 				83F70CC92BDAB25A000229D4 /* UIView+Nib.swift in Sources */,
+				83F70CD42BDBA230000229D4 /* Userdefaults+Save.swift in Sources */,
 				83A53EC22BDA52A000AFD6A2 /* SceneDelegate.swift in Sources */,
 				83F70CCD2BDABD57000229D4 /* StockMarketUIModel.swift in Sources */,
 				83F70CC32BDAAB69000229D4 /* StockListResponse.swift in Sources */,

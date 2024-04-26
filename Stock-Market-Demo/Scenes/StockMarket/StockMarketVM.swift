@@ -17,6 +17,7 @@ class StockMarketVM {
         let configurator = QueryItemConfigurator(stockInfo: stockListResponse.value?.stockInfo)
         return configurator
     }()
+    private var timer = Timer()
     
     private let stockInfoArray: BehaviorRelay<[StockInfoModel]> = .init(value: [])
     let stockListResponse: BehaviorRelay<StockListResponse?> = .init(value: nil)
@@ -31,7 +32,12 @@ class StockMarketVM {
         
         group.notify(queue: .main) {
             self.fetchStockListDetail()
+            self.initTimer()
         }
+    }
+    
+    deinit {
+        timer.invalidate()
     }
     
     func fetchStockList() {
@@ -81,6 +87,12 @@ extension StockMarketVM {
         }
         
         self.stockListUIModel.accept(stockUIModel)
+    }
+    
+    private func initTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.fetchStockListDetail()
+        })
     }
 }
 

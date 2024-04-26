@@ -17,6 +17,8 @@ class StockMarketVC: UIViewController {
         didSet {
             stockTableView.delegate = self
             stockTableView.dataSource = self
+            stockTableView.separatorStyle = .singleLine
+            stockTableView.separatorColor = .black
             stockTableView.register(UINib(nibName: StockMarketTableViewCell.getNibName(),
                                           bundle: nil),
                                     forCellReuseIdentifier: StockMarketTableViewCell.identifier)

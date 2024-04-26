@@ -9,10 +9,12 @@ import UIKit
 
 class StockMarketTableViewCell: UITableViewCell {
     static let identifier = "StockMarketTableViewCell"
+    private var lastUpdateValue: String = ""
+    private var lastUpdateTime: String = ""
     
     @IBOutlet var arrowImageView: UIImageView! {
         didSet {
-            
+            arrowImageView.tintColor = .clear
         }
     }
     
@@ -41,8 +43,14 @@ class StockMarketTableViewCell: UITableViewCell {
     }
     
     func configure(with model: StockMarketUIModel?, firstColumn: QueryEnum, secondColumn: QueryEnum) {
+        calculateDifference(stockCode: model?.stockCode ?? "",
+                            newTime: model?.stockDetail.clo ?? "", 
+                            newValue: model?.stockDetail.las ?? "")
+        
         stockCodLabel.text = model?.stockDetail.tke
         updateTimeLabel.text = model?.stockDetail.clo
+        
+        lastUpdateTime = model?.stockDetail.clo ?? ""
         
         switch firstColumn {
         case .pdd:
@@ -64,6 +72,38 @@ class StockMarketTableViewCell: UITableViewCell {
             secondFilterLabel.text = model?.stockDetail.hig
         case .las:
             secondFilterLabel.text = model?.stockDetail.las
+        }
+    }
+    
+    private func calculateDifference(stockCode: String, newTime: String, newValue: String) {
+        let oldValue = UserDefaults.standard.get(stockCode: stockCode)
+        
+        if newValue > (oldValue ?? "") {
+            arrowImageView.image = UIImage(systemName: "arrow.up")
+            arrowImageView.tintColor = .green
+        } else {
+            arrowImageView.image = UIImage(systemName: "arrow.down")
+            arrowImageView.tintColor = .red
+        }
+        
+        UserDefaults.standard.save(newValue: newValue, stockCode: stockCode)
+        
+        if newTime != lastUpdateTime && lastUpdateTime != "" {
+            changeColorAnimation()
+        }
+    }
+    
+    private func changeColorAnimation() {
+        UIView.animate(withDuration: 0.3,
+                       delay: 0,
+                       options: .curveEaseIn) {
+            self.contentView.backgroundColor = .init(white: 1, alpha: 0.2)
+        } completion: { isCompleted in
+            if isCompleted {
+                UIView.animate(withDuration: 0.2) {
+                    self.contentView.backgroundColor = .clear
+                }
+            }
         }
     }
 }
