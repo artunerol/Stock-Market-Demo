@@ -40,14 +40,30 @@ class StockMarketTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(with model: StockMarketUIModel?) {
-        stockCodLabel.text = model?.stockCode
-        updateTimeLabel.text = model?.updateTime
-        firstFilterLabel.text = model?.firstValue
-        secondFilterLabel.text = model?.secondValue
-    }
-    
-    func configure(with model: StockInfo?) {
-        stockCodLabel.text = model?.cod
+    func configure(with model: StockMarketUIModel?, firstColumn: QueryEnum, secondColumn: QueryEnum) {
+        stockCodLabel.text = model?.stockDetail.tke
+        updateTimeLabel.text = model?.stockDetail.clo
+        
+        switch firstColumn {
+        case .pdd:
+            firstFilterLabel.text = model?.stockDetail.pdd
+        case .ddi:
+            firstFilterLabel.text = model?.stockDetail.ddi
+        case .hig:
+            firstFilterLabel.text = model?.stockDetail.hig
+        case .las:
+            firstFilterLabel.text = model?.stockDetail.las
+        }
+        
+        switch secondColumn {
+        case .pdd:
+            secondFilterLabel.text = model?.stockDetail.pdd
+        case .ddi:
+            secondFilterLabel.text = model?.stockDetail.ddi
+        case .hig:
+            secondFilterLabel.text = model?.stockDetail.hig
+        case .las:
+            secondFilterLabel.text = model?.stockDetail.las
+        }
     }
 }

@@ -9,10 +9,7 @@ import Foundation
 
 struct StockMarketUIModel {
     let stockCode: String
-    let updateTime: String
-    let firstValue: String
-    let secondValue: String
-    let key: String
+    let stockDetail: StockDetail
 }
 
 struct StockInfoModel {

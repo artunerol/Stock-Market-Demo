@@ -17,14 +17,6 @@ struct StockDetailResponse: Codable {
 
 // MARK: - L
 struct StockDetail: Codable {
-    let key, updateTime, lastValue: String
-    let diff, diffPercengate: String?
-    
-    enum CodingKeys:String, CodingKey {
-        case key = "tke"
-        case updateTime = "clo"
-        case diffPercengate = "pdd"
-        case lastValue = "las"
-        case diff = "ddi"
-    }
+    let tke, clo, las: String
+    let ddi, pdd, hig: String?
 }

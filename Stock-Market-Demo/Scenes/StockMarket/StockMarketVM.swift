@@ -22,6 +22,9 @@ class StockMarketVM {
     let stockListResponse: BehaviorRelay<StockListResponse?> = .init(value: nil)
     let stockListUIModel: BehaviorRelay<[StockMarketUIModel]> = .init(value: [])
     
+    var firstColumn: QueryEnum = .las
+    var secondColumn: QueryEnum = .pdd
+    
     init() {
         bind()
         fetchStockList()
@@ -44,6 +47,7 @@ class StockMarketVM {
                     group.leave()
                 case .failure(let error):
                     print(error) //TODO: Error handling
+                    group.leave()
                 }
             }
     }
@@ -55,7 +59,7 @@ class StockMarketVM {
                      queryParams: queryItemConfigurator.queryItems) { [weak self] result in
                 switch result {
                 case .success(let response):
-                    self?.createStockUIModel(with: response)
+                    self?.updateStockUIModel(with: response)
                 case .failure(let error):
                     print(error)
                 }
@@ -65,17 +69,15 @@ class StockMarketVM {
 
 // MARK: - Helpers
 extension StockMarketVM {
-    private func createStockUIModel(with detailResponse: StockDetailResponse) {
+    private func updateStockUIModel(with detailResponse: StockDetailResponse) {
         let stockInfoArray = self.stockInfoArray.value
         var stockUIModel: [StockMarketUIModel] = []
         
         stockInfoArray.forEach { stockInfo in
-            let detailData = detailResponse.stockDetailArray.first(where: {$0.key == stockInfo.key})
-            stockUIModel.append(StockMarketUIModel(stockCode: stockInfo.stockCode,
-                                                   updateTime: detailData?.updateTime ?? "",
-                                                   firstValue: detailData?.lastValue ?? "",
-                                                   secondValue: detailData?.diff ?? "",
-                                                   key: stockInfo.stockCode))
+            if let detailData = detailResponse.stockDetailArray.first(where: {$0.tke == stockInfo.key}) {
+                stockUIModel.append(StockMarketUIModel(stockCode: stockInfo.stockCode,
+                                                       stockDetail: detailData))
+            }
         }
         
         self.stockListUIModel.accept(stockUIModel)
@@ -97,7 +99,7 @@ extension StockMarketVM {
                 var stockInfoArray: [StockInfoModel] = []
                 listInfo?.stockInfo.forEach({ stockInfo in
                     stockInfoArray.append(StockInfoModel(stockCode: stockInfo.cod,
-                                                                  key: stockInfo.tke))
+                                                         key: stockInfo.tke))
                 })
                 self.stockInfoArray.accept(stockInfoArray)
             })

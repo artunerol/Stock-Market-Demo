@@ -22,7 +22,7 @@ class NetworkSession {
         guard let url = urlComponent?.url else { return }
         let request = URLRequest(url: url)
         
-        URLSession.shared.dataTask(with: request) {data, _, error in
+        URLSession.shared.dataTask(with: request) { data, _, error in
             guard let data = data else { return }
             
             if let error = error {

@@ -12,7 +12,7 @@ import RxCocoa
 class StockMarketVC: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = StockMarketVM()
-
+    
     @IBOutlet var stockTableView: UITableView! {
         didSet {
             stockTableView.delegate = self
@@ -63,7 +63,9 @@ extension StockMarketVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StockMarketTableViewCell.identifier,
                                                        for: indexPath) as? StockMarketTableViewCell else { return UITableViewCell() }
-        cell.configure(with: viewModel.stockListUIModel.value[indexPath.row])
+        cell.configure(with: viewModel.stockListUIModel.value[indexPath.row],
+                       firstColumn: viewModel.firstColumn,
+                       secondColumn: viewModel.secondColumn)
         return cell
     }
     
@@ -76,10 +78,12 @@ extension StockMarketVC: UITableViewDelegate, UITableViewDataSource {
 
 extension StockMarketVC: StockHeaderDelegate {
     func firstButtonPressed() {
-        print("from vc")
+        viewModel.firstColumn = .hig
+        stockTableView.reloadData()
     }
     
     func secondButtonPressed() {
-        print("from vc")
+        viewModel.secondColumn = .ddi
+        stockTableView.reloadData()
     }
 }

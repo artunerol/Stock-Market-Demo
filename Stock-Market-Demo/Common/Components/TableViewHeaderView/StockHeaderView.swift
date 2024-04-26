@@ -23,10 +23,8 @@ class StockHeaderView: UIView {
     
     @IBAction func firstButtonPressed(_ sender: Any) {
         delegate?.firstButtonPressed()
-        print("firstButtonPressed")
     }
     @IBAction func secondButtonPressed(_ sender: Any) {
         delegate?.secondButtonPressed()
-        print("secondButtonPressed")
     }
 }

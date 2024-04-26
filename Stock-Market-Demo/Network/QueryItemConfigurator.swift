@@ -8,11 +8,10 @@
 import Foundation
 
 enum QueryEnum: String {
-    case tke = "tke"
-    case clo = "clo"
     case pdd = "pdd"
-    case las = "las"
     case ddi = "ddi"
+    case hig = "hig"
+    case las = "las"
 }
 
 class QueryItemConfigurator {
@@ -23,12 +22,12 @@ class QueryItemConfigurator {
         stockInfo?.forEach({ stock in
             stockCodes += stock.tke + "~"
         })
-        addQueryParam(with: [.ddi])
+        addQueryParam(with: [.pdd, .ddi, .hig, .las])
     }
     
     func addQueryParam(with query: [QueryEnum]) {
         var fieldQuery = ""
-        query.forEach {fieldQuery = $0.rawValue + ","}
+        query.forEach {fieldQuery += $0.rawValue + ","}
         
         queryItems = [URLQueryItem(name: "fields", value: fieldQuery),
                       URLQueryItem(name: "stcs", value: stockCodes)]
